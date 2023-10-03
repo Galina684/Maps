@@ -16,8 +16,9 @@ public class EmployeeService implements EmployeeServiceInterface {
     }
 
     @Override
-    public Employee add(String firstName, String lastName) {
-        Employee employee = new Employee(firstName, lastName);
+    public Employee add(String firstName, String lastName, int departmentId,
+     Integer salary) {
+        Employee employee = new Employee(firstName, lastName, departmentId, salary);
         if (employees.containsKey(employee.getFullName())) {
             throw new EmployeeAlreadyAddedException();
         }
@@ -26,8 +27,9 @@ public class EmployeeService implements EmployeeServiceInterface {
     }
 
     @Override
-    public Employee remove(String firstName, String lastName) {
-        Employee employee = new Employee(firstName, lastName);
+    public Employee remove(String firstName, String lastName, int departmentId,
+                           Integer salary) {
+        Employee employee = new Employee(firstName, lastName, departmentId, salary);
         if (employees.containsKey(employee.getFullName())) {
             return employees.remove(employee.getFullName());
         }
@@ -36,13 +38,16 @@ public class EmployeeService implements EmployeeServiceInterface {
     }
 
     @Override
-    public Employee find(String firstName, String lastName) {
-        Employee employee = new Employee(firstName, lastName);
+    public Employee find(String firstName, String lastName, int departmentId,
+                         Integer salary) {
+        Employee employee = new Employee(firstName, lastName, departmentId, salary);
         if (!employees.containsKey(employee.getFullName())) {
             throw new EmployeeNotFoundException();
         }
         return employees.get(employee.getFullName());
     }
+
+
 
     @Override
     public Map<String, Employee> findAll() {
