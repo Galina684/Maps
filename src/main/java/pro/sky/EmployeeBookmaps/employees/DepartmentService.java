@@ -1,44 +1,49 @@
 package pro.sky.EmployeeBookmaps.employees;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import pro.sky.EmployeeBookmaps.exception.EmployeeAlreadyAddedException;
 
 import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Service
-public class DepartmentService implements DepartmentServiceInterface{
+public class DepartmentService implements DepartmentServiceInterface {
 
-    List<Employee> employees = new ArrayList<>();
+    private final EmployeeServiceInterface employeeServiceInterface;
 
-    public Employee add(String firstName, String lastName, int departmentId, Integer salary) {
-        Employee employee = new Employee(firstName, lastName, departmentId, salary);
-        if (employees.contains(employee)) {
-            throw new EmployeeAlreadyAddedException();
-        }
-        employees.add(employee);
-        return employee;
+    @Autowired
+    public DepartmentService(EmployeeServiceInterface employeeServiceInterface) {
+        this.employeeServiceInterface = employeeServiceInterface;
     }
+
     @Override
-    public Employee maxSalary(int departmentId){
-
-        Optional<Employee> maxSalary = employees.stream()
-                .filter(employees -> employees.getDepartmentId()==(departmentId))
-
-                .max(Comparator.comparingInt(employees -> employees.getSalary()));
-
-        return maxSalary.orElse(null);
-
+    public Employee maxSalary(int departmentId) {
+        return employeeServiceInterface.findAll().stream()
+                .filter(e -> e.getDepartmentId() == departmentId)
+                .max(Comparator.comparingInt(Employee::getSalary))
+                .orElseThrow(() -> new NoSuchElementException("Сотрудник не найден"));
     }
 
-@Override
-    public Employee minSalary(int departmentId){
-        Optional<Employee> minSalary = employees.stream()
-                .filter(employees -> employees.getDepartmentId()==(departmentId))
+    @Override
+    public Employee minSalary(int departmentId) {
+        return employeeServiceInterface.findAll().stream()
+                .filter(e -> e.getDepartmentId() == departmentId)
+                .min(Comparator.comparingInt(Employee::getSalary))
+                .orElseThrow(() -> new NoSuchElementException("Сотрудник не найден"));
+    }
 
-                .min(Comparator.comparingInt(employees -> employees.getSalary()));
+    @Override
+    public Map<Integer, List<Employee>> employeesByDepartment(int departmentId) {
+        return employeeServiceInterface.findAll().stream()
+                .filter(e -> e.getDepartmentId() == departmentId)
+                .collect(Collectors.groupingBy(Employee::getDepartmentId));
+    }
 
-        return minSalary.orElse(null);
-
+    @Override
+    public Map<Integer, List<Employee>> allEmployees() {
+        return employeeServiceInterface.findAll().stream()
+                .collect(Collectors.groupingBy(Employee::getDepartmentId));
     }
 
 }

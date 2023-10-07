@@ -1,5 +1,9 @@
 package pro.sky.EmployeeBookmaps.employees;
 
+import java.util.List;
+import java.util.Map;
+
+
 public interface DepartmentServiceInterface {
 
 
@@ -7,5 +11,7 @@ public interface DepartmentServiceInterface {
 
     Employee maxSalary(int departmentId);
 
-    Employee add(String firstName, String lastName, int departmentId, Integer salary);
+    Map<Integer, List<Employee>> employeesByDepartment(int departmentId);
+
+    Map<Integer, List<Employee>> allEmployees();
 }

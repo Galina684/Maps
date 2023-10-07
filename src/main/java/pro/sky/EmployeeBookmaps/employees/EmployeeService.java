@@ -1,5 +1,6 @@
 package pro.sky.EmployeeBookmaps.employees;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pro.sky.EmployeeBookmaps.exception.EmployeeAlreadyAddedException;
 import pro.sky.EmployeeBookmaps.exception.EmployeeNotFoundException;
@@ -10,7 +11,7 @@ import java.util.*;
 public class EmployeeService implements EmployeeServiceInterface {
 
     private final Map<String, Employee> employees;
-
+@Autowired
     public EmployeeService() {
         this.employees = new HashMap<>();
     }
@@ -46,11 +47,8 @@ public class EmployeeService implements EmployeeServiceInterface {
         }
         return employees.get(employee.getFullName());
     }
-
-
-
     @Override
-    public Map<String, Employee> findAll() {
-        return employees;
+    public Collection<Employee> findAll() {
+        return this.employees.values();
     }
 }
