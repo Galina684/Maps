@@ -1,12 +1,13 @@
-package pro.sky.EmployeeBookmaps.employees;
+package pro.sky.EmployeeBookmaps.Controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import pro.sky.EmployeeBookmaps.employees.Employee;
+import pro.sky.EmployeeBookmaps.service.EmployeeServiceInterface;
 
 import java.util.Collection;
-import java.util.Map;
 
 @RestController
 @RequestMapping("/employee")

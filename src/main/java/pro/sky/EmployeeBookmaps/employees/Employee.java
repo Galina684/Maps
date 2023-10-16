@@ -1,5 +1,7 @@
 package pro.sky.EmployeeBookmaps.employees;
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.util.Objects;
 
 public final class Employee {
@@ -10,12 +12,11 @@ public final class Employee {
 
 
     public Employee(String firstName, String lastName, int departmentId, Integer salary) {
-        this.firstName = firstName;
-        this.lastName = lastName;
+        this.firstName = StringUtils.capitalize(firstName.toLowerCase());
+        this.lastName = StringUtils.capitalize(lastName.toLowerCase());
         this.departmentId = departmentId;
         this.salary = salary;
     }
-
 
 
     public String getFirstName() {

@@ -1,4 +1,6 @@
-package pro.sky.EmployeeBookmaps.employees;
+package pro.sky.EmployeeBookmaps.service;
+
+import pro.sky.EmployeeBookmaps.employees.Employee;
 
 import java.util.List;
 import java.util.Map;

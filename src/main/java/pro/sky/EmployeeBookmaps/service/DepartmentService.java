@@ -1,11 +1,11 @@
-package pro.sky.EmployeeBookmaps.employees;
+package pro.sky.EmployeeBookmaps.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import pro.sky.EmployeeBookmaps.employees.Employee;
 
 import java.util.*;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 @Service
 public class DepartmentService implements DepartmentServiceInterface {
