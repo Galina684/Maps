@@ -7,12 +7,13 @@ import java.util.Collection;
 
 public interface EmployeeServiceInterface {
 
-    Employee add(String firstName, String lastName, int departmentId,
-                 Integer salary);
-    Employee remove(String firstName, String lastName, int departmentId,
-                    Integer salary);
-    Employee find(String firstName, String lastName, int departmentId,
-                  Integer salary);
+    Employee addEmployee(String firstName, String lastName, int departmentId,
+                         Integer salary);
+    Employee removeEmployee(String firstName, String lastName, int departmentId,
+                            Integer salary);
+    Employee findEmployee(String firstName, String lastName, int departmentId,
+                          Integer salary);
     Collection<Employee> findAll();
+
 
 }

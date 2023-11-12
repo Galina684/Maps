@@ -25,8 +25,8 @@ public class EmployeeService implements EmployeeServiceInterface {
 
 
     @Override
-    public Employee add(String firstName, String lastName, int departmentId,
-                        Integer salary) {
+    public Employee addEmployee(String firstName, String lastName, int departmentId,
+                                Integer salary) {
         chekingTheCorrectName(firstName, lastName);
         Employee employee = new Employee(firstName, lastName, departmentId, salary);
         if (employees.containsKey(employee.getFullName())) {
@@ -38,8 +38,8 @@ public class EmployeeService implements EmployeeServiceInterface {
 
 
     @Override
-    public Employee remove(String firstName, String lastName, int departmentId,
-                           Integer salary) {
+    public Employee removeEmployee(String firstName, String lastName, int departmentId,
+                                   Integer salary) {
         chekingTheCorrectName(firstName, lastName);
         Employee employee = new Employee(firstName, lastName, departmentId, salary);
         if (employees.containsKey(employee.getFullName())) {
@@ -50,8 +50,8 @@ public class EmployeeService implements EmployeeServiceInterface {
     }
 
     @Override
-    public Employee find(String firstName, String lastName, int departmentId,
-                         Integer salary) {
+    public Employee findEmployee(String firstName, String lastName, int departmentId,
+                                 Integer salary) {
         chekingTheCorrectName(firstName, lastName);
         Employee employee = new Employee(firstName, lastName, departmentId, salary);
         if (!employees.containsKey(employee.getFullName())) {
